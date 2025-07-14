@@ -13,23 +13,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "PostHub - Share Your Stories with the World",
+  title: "PostIT - Share Your Stories with the World",
   description: "Join thousands of writers, creators, and thinkers sharing their ideas, experiences, and knowledge in our vibrant community. Create, discover, and engage with amazing content.",
   keywords: "blog, posts, writing, community, stories, ideas, creative writing, social platform",
-  authors: [{ name: "PostHub Team" }],
-  creator: "PostHub",
-  publisher: "PostHub",
+  authors: [{ name: "PostIT Team" }],
+  creator: "PostIT",
+  publisher: "PostIT",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://posthub.com",
-    title: "PostHub - Share Your Stories with the World",
+    url: "https://postIT.com",
+    title: "PostIT - Share Your Stories with the World",
     description: "Join thousands of writers, creators, and thinkers sharing their ideas, experiences, and knowledge in our vibrant community.",
-    siteName: "PostHub",
+    siteName: "PostIT",
   },
   twitter: {
     card: "summary_large_image",
-    title: "PostHub - Share Your Stories with the World",
+    title: "PostIT - Share Your Stories with the World",
     description: "Join thousands of writers, creators, and thinkers sharing their ideas, experiences, and knowledge in our vibrant community.",
   },
   robots: {
