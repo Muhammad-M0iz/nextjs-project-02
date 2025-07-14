@@ -15,7 +15,7 @@ export default function Home() {
                 <BookOpen className="h-10 w-10 text-white" />
               </div>
               <h1 className="text-5xl lg:text-7xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
-                PostHub
+                PostIt
               </h1>
             </div>
 

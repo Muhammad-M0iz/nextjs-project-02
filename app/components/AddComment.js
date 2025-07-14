@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { createComment } from '@/app/lib/clientActions';
 import AuthGuard from '@/app/components/AuthGuard';
 
-export default function AddComment({ postId }) {
+export default function AddComment({ postId , user}) {
     const dispatch = useDispatch();
     const [errors, setErrors] = useState({});
     const [message, setMessage] = useState('');
@@ -17,7 +17,8 @@ export default function AddComment({ postId }) {
         setMessage('');
 
         const formData = new FormData(e.target);
-        const result = createComment(formData, dispatch, postId);
+        const result = createComment(formData, dispatch, postId,user);
+        console.log(result)
 
         if (result.errors) {
             setErrors(result.errors);

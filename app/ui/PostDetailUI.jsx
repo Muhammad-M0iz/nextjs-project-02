@@ -9,6 +9,8 @@ import {
     AlertCircle, 
     CheckCircle 
 } from "lucide-react";
+import { OwnershipDebug } from "@/app/components/OwnershipDebug";
+import CommentItem from "@/app/components/CommentItem";
 
 export default function PostDetailUI({
     post,
@@ -16,9 +18,10 @@ export default function PostDetailUI({
     onEditClick,
     onDeleteClick,
     showEditDelete = false,
+    canEditPost = false, 
     isCommentsLoading = false,
     commentsError = null,
-    children // For AddComment and other components
+    children 
 }) {
     if (!post) {
         return (
@@ -49,6 +52,9 @@ export default function PostDetailUI({
                     </Link>
                 </div>
 
+                {/* Debug Info - Remove in production */}
+                <OwnershipDebug post={post} />
+
                 {/* Main Post Card */}
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden mb-8">
                     {/* Post Header */}
@@ -65,7 +71,7 @@ export default function PostDetailUI({
                             </div>
                             
                             {/* Action Buttons */}
-                            {showEditDelete && (
+                            {showEditDelete && canEditPost && (
                                 <div className="flex space-x-3">
                                     <button
                                         onClick={onEditClick}
@@ -76,7 +82,7 @@ export default function PostDetailUI({
                                     </button>
                                     <button
                                         onClick={onDeleteClick}
-                                        className="inline-flex items-center px-4 py-2 bg-red-500 bg-opacity-90 hover:bg-opacity-100 text-white font-medium rounded-lg transition-all duration-200"
+                                        className="inline-flex items-center px-4 py-2 bg-red-500 bg-opacity-90 hover:bg-opacity-100 text-white font-medium rounded-lg transition-all duration-200 cursor-pointer"
                                     >
                                         <Trash2 className="h-4 w-4 mr-2" />
                                         Delete
@@ -133,36 +139,15 @@ export default function PostDetailUI({
                             <>
                                 {/* Comments List */}
                                 {comments && comments.length > 0 ? (
-                                    <div className="space-y-6 mb-8">
-                                        {comments.map((comment, index) => (
-                                            <div key={comment.id} className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-                                                <div className="flex items-start space-x-4">
-                                                    <div className="flex-shrink-0">
-                                                        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                                                            <span className="text-white font-semibold text-sm">
-                                                                {(comment.name || comment.email || 'U').charAt(0).toUpperCase()}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div className="flex-1 min-w-0">
-                                                        <div className="flex items-center space-x-2 mb-2">
-                                                            <h4 className="text-sm font-semibold text-gray-900">
-                                                                {comment.name || 'Anonymous'}
-                                                            </h4>
-                                                            {comment.email && (
-                                                                <span className="text-xs text-gray-500">
-                                                                    ({comment.email})
-                                                                </span>
-                                                            )}
-                                                        </div>
-                                                        <p className="text-gray-700 leading-relaxed">
-                                                            {comment.body}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <ul className="space-y-4 mb-8">
+                                        {comments.map((comment) => (
+                                            <CommentItem 
+                                                key={comment.id} 
+                                                comment={comment} 
+                                                postId={post.id} 
+                                            />
                                         ))}
-                                    </div>
+                                    </ul>
                                 ) : (
                                     <div className="text-center py-12">
                                         <div className="w-16 h-16 mx-auto mb-4 text-gray-300">

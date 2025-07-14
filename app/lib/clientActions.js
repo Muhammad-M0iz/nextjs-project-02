@@ -13,7 +13,7 @@ const UpdateFormSchema = z.object({
     body: z.string().min(1, 'Body is required'),
 });
 
-export function createPostClient(formData, dispatch) {
+export function createPostClient(formData, dispatch, user) {
     const parsedData = FormSchema.safeParse(Object.fromEntries(formData));
     if (!parsedData.success) {
         return {
@@ -27,7 +27,7 @@ export function createPostClient(formData, dispatch) {
         id: Date.now(), 
         title,
         body,
-        userId: 1, 
+        userId: user?.id 
     };
 
     dispatch(addPost(newPost));
@@ -73,7 +73,7 @@ export function deletePostClient(postId, dispatch) {
     };
 }
 
-export function createComment(fromData,dispatch,postId){
+export function createComment(fromData,dispatch,postId,user){
     const parsedData = z.object({
         name: z.string().min(1, 'Name is required'),
         body: z.string().min(1, 'Body is required'),
@@ -87,13 +87,15 @@ export function createComment(fromData,dispatch,postId){
     }
 
     const { name, body } = parsedData.data;
+
     const newComment = {
         id: Date.now(),
+        userId:user?.id,
         postId: parseInt(postId),
         name,
         body,
     };
-
+    
     dispatch(addComment({ postId: parseInt(postId), comment: newComment }));
     
     return {

@@ -24,7 +24,7 @@ export default function EditComment({ comment, postId, onCancel }) {
         } else {
             setMessage(result.message);
             setTimeout(() => {
-                onCancel(); // Close edit mode
+                onCancel(); 
             }, 1000);
         }
         

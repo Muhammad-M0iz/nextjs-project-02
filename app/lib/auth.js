@@ -4,12 +4,15 @@ import bcrypt from 'bcryptjs';
 // Client-side authentication utilities
 export async function signupClient(data) {
     const { name, email, password } = data;
+    //generate a random number for user ID
+    const userId = Math.floor(Math.random() * 1000000).toString();
     
     try {
         // Hash the password on client side
         const hashedPassword = await bcrypt.hash(password, 10);
         
         const user = {
+            userId,
             name,
             email,
             password: hashedPassword,
@@ -69,6 +72,7 @@ export async function signinClient(data) {
         
         // Store current session
         localStorage.setItem('currentUser', JSON.stringify({
+            id: user.userId,
             name: user.name,
             email: user.email,
             loginTime: new Date().toISOString()

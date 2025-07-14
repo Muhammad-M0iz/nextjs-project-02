@@ -7,6 +7,7 @@ import { fetchPostById, fetchCommentsByPostId } from '@/app/lib/data';
 import { setComments } from '../../../store/postSlice';
 import { deletePostClient } from '@/app/lib/clientActions';
 import { useAuth } from '@/app/components/AuthGuard';
+import { usePostOwnership } from '@/app/components/PostOwnerGuard';
 import PostDetailUI from '@/app/ui/PostDetailUI';
 import AddComment from '@/app/components/AddComment';
 import CommentItem from '@/app/components/CommentItem';
@@ -16,7 +17,7 @@ export default function Post() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const router = useRouter();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated,user } = useAuth();
   const [isDeleting, setIsDeleting] = useState(false);
   
   const posts = useSelector((state) => state.posts.posts);
@@ -39,6 +40,9 @@ export default function Post() {
 
   // Use store post if available, otherwise use fetched post
   const post = postFromStore || fetchedPost;
+
+  // Check if current user owns this post
+  const { isOwner: canEditPost } = usePostOwnership(post);
 
   const {
     data: fetchedComments,
@@ -120,13 +124,14 @@ export default function Post() {
       onEditClick={handleEditClick}
       onDeleteClick={handleDeleteClick}
       showEditDelete={isAuthenticated}
+      canEditPost={canEditPost}
       isCommentsLoading={isCommentsLoading && comments.length === 0}
       commentsError={isCommentsError ? commentsError : null}
     >
       {/* Add Comment Component */}
       <div className="mt-8 pt-6 border-t border-gray-200">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Add a Comment</h3>
-        <AddComment postId={id} />
+        <AddComment postId={id} user={user}/>
       </div>
     </PostDetailUI>
   );
