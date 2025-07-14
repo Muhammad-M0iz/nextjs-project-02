@@ -71,7 +71,7 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h3 className="text-4xl font-bold text-gray-900 mb-6">Why Choose PostHub?</h3>
+            <h3 className="text-4xl font-bold text-gray-900 mb-6">Why Choose PostIT?</h3>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Everything you need to share your thoughts and connect with like-minded people
             </p>
@@ -124,7 +124,7 @@ export default function Home() {
             <Trophy className="h-16 w-16 text-white mx-auto mb-6" />
             <h3 className="text-4xl font-bold text-white mb-6">Ready to Share Your Story?</h3>
             <p className="text-xl text-blue-100 mb-10">
-              Join thousands of creators who have already made PostHub their home for sharing ideas and building connections.
+              Join thousands of creators who have already made PostIT their home for sharing ideas and building connections.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link 
@@ -151,7 +151,7 @@ export default function Home() {
         <div className="container mx-auto px-6 text-center">
           <div className="flex items-center justify-center mb-6">
             <BookOpen className="h-8 w-8 text-blue-400 mr-3" />
-            <span className="text-2xl font-bold text-white">PostHub</span>
+            <span className="text-2xl font-bold text-white">PostIT</span>
           </div>
           <p className="text-gray-400 mb-6">
             Empowering voices, connecting minds, building community.
@@ -172,7 +172,7 @@ export default function Home() {
           </div>
           <div className="border-t border-gray-800 pt-6">
             <p className="text-gray-500 text-sm">
-              © 2025 PostHub. Made with ❤️ for the community.
+              © 2025 PostIT. Made with ❤️ for the community.
             </p>
           </div>
         </div>
