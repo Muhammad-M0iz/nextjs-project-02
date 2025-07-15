@@ -53,7 +53,6 @@ export default function PostDetailUI({
                 </div>
 
                 {/* Debug Info - Remove in production */}
-                <OwnershipDebug post={post} />
 
                 {/* Main Post Card */}
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden mb-8">
