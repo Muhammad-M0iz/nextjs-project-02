@@ -21,7 +21,11 @@ export default function UserStatus() {
     if (isAuthenticated && user) {
         return (
             <div className="flex items-center space-x-4">
-                <span className="text-gray-700">Welcome, {user.name}!</span>
+                <span className="text-gray-700">
+                    <h2 className="text-lg font-semibold">
+                    Welcome, {user.name}!
+                    </h2>
+                    </span>
                 <button
                     onClick={handleLogout}
                     className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600 transition-colors"

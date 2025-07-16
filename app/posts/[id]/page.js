@@ -7,10 +7,8 @@ import { fetchPostById, fetchCommentsByPostId } from '@/app/lib/data';
 import { setComments } from '../../../store/postSlice';
 import { deletePostClient } from '@/app/lib/clientActions';
 import { useAuth } from '@/app/components/AuthGuard';
-import { usePostOwnership } from '@/app/components/PostOwnerGuard';
 import PostDetailUI from '@/app/ui/PostDetailUI';
 import AddComment from '@/app/components/AddComment';
-import CommentItem from '@/app/components/CommentItem';
 import { Loader2, AlertTriangle, ArrowLeft } from 'lucide-react';
 
 export default function Post() {
@@ -23,10 +21,8 @@ export default function Post() {
   const posts = useSelector((state) => state.posts.posts);
   const comments = useSelector((state) => state.posts.comments[id] || []);
   
-  // First try to get post from Redux store
   const postFromStore = posts.find(p => p.id === parseInt(id));
 
-  // If not in store, fetch from API (fallback for direct URL access)
   const {
     data: fetchedPost,
     isLoading,
@@ -38,12 +34,9 @@ export default function Post() {
     enabled: !!id && !postFromStore,
   });
 
-  // Use store post if available, otherwise use fetched post
   const post = postFromStore || fetchedPost;
 
-  // Check if current user owns this post
-  const { isOwner: canEditPost } = usePostOwnership(post);
-
+  const canEditPost = isAuthenticated && user && post && post.userId === user.id;
   const {
     data: fetchedComments,
     isLoading: isCommentsLoading,
@@ -55,14 +48,12 @@ export default function Post() {
     enabled: !!id && comments.length === 0,
   });
 
-  // Store comments in Redux when fetched
   useEffect(() => {
     if (fetchedComments && comments.length === 0) {
       dispatch(setComments({ postId: id, comments: fetchedComments }));
     }
   }, [fetchedComments, dispatch, id, comments.length]);
 
-  // Use store comments if available, otherwise use fetched comments
   const displayComments = comments.length > 0 ? comments : fetchedComments || [];
 
   const handleEditClick = () => {

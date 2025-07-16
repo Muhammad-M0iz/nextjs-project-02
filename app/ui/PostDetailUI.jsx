@@ -7,9 +7,7 @@ import {
     MessageCircle, 
     Loader2, 
     AlertCircle, 
-    CheckCircle 
 } from "lucide-react";
-import { OwnershipDebug } from "@/app/components/OwnershipDebug";
 import CommentItem from "@/app/components/CommentItem";
 
 export default function PostDetailUI({
@@ -52,7 +50,6 @@ export default function PostDetailUI({
                     </Link>
                 </div>
 
-                {/* Debug Info - Remove in production */}
 
                 {/* Main Post Card */}
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden mb-8">

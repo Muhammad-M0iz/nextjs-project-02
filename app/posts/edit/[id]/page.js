@@ -4,14 +4,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { updatePostClient } from "@/app/lib/clientActions";
-import { withPostEditGuard } from "@/app/components/AuthGuard";
+import { withAuthGuard, useAuth } from "@/app/components/AuthGuard";
 import { useParams } from "next/navigation";
 import EditPostFormUI from "@/app/ui/EditPostFormUI";
 
-function EditPost({ user }) {
+function EditPost() {
     const { id } = useParams();
     const dispatch = useDispatch();
     const router = useRouter();
+    const { user, isLoading: authLoading } = useAuth();
     const posts = useSelector((state) => state.posts.posts);
     const post = posts.find(p => p.id === parseInt(id));
     
@@ -20,12 +21,11 @@ function EditPost({ user }) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
-    // Check if user owns the post
     useEffect(() => {
-        if (post && user) {
+        if (!authLoading) {
             setIsLoading(false);
         }
-    }, [post, user]);
+    }, [authLoading]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -53,7 +53,7 @@ function EditPost({ user }) {
         router.push(`/posts/${id}`);
     };
 
-    // Loading state
+
     if (isLoading) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center">
@@ -89,7 +89,7 @@ function EditPost({ user }) {
     }
 
     // Check if user owns the post
-    if (post.userId !== user.id) {
+    if (!user || post.userId !== user.id) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center">
                 <div className="text-center max-w-md">
@@ -123,4 +123,4 @@ function EditPost({ user }) {
     );
 }
 
-export default withPostEditGuard(EditPost);
+export default withAuthGuard(EditPost);
