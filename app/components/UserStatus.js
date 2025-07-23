@@ -1,5 +1,5 @@
 'use client';
-import { useAuth } from "@/app/components/AuthGuard";
+import { useAuth } from "@/app/hooks";
 import { signOut } from "@/app/lib/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

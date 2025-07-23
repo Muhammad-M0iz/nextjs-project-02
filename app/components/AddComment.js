@@ -25,7 +25,6 @@ export default function AddComment({ postId , user}) {
             setMessage(result.message);
         } else {
             setMessage(result.message);
-            // Clear form
             e.target.reset();
             setTimeout(() => setMessage(''), 3000);
         }

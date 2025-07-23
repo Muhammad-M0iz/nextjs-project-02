@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { updatePostClient } from "@/app/lib/clientActions";
-import { withAuthGuard, useAuth } from "@/app/components/AuthGuard";
+import { withAuthGuard } from "@/app/components/AuthGuard";
+import { useAuth } from "@/app/hooks";
 import { useParams } from "next/navigation";
 import EditPostFormUI from "@/app/ui/EditPostFormUI";
 

@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteCommentClient } from '@/app/lib/clientActions';
-import { useAuth } from '@/app/components/AuthGuard';
+import { useAuth } from '@/app/hooks';
 import EditComment from '@/app/components/EditComment';
 
 export default function CommentItem({ comment, postId }) {
@@ -10,7 +10,6 @@ export default function CommentItem({ comment, postId }) {
     const { isAuthenticated, user } = useAuth();
     const [isEditing, setIsEditing] = useState(false);
     
-    // Check if current user owns this comment
     const canEditComment = user && comment && user.id === comment.userId;
 
     const handleDelete = () => {

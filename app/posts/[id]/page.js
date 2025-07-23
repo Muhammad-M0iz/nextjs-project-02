@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { fetchPostById, fetchCommentsByPostId } from '@/app/lib/data';
 import { setComments } from '../../../store/postSlice';
 import { deletePostClient } from '@/app/lib/clientActions';
-import { useAuth } from '@/app/components/AuthGuard';
+import { useAuth } from '@/app/hooks';
 import PostDetailUI from '@/app/ui/PostDetailUI';
 import AddComment from '@/app/components/AddComment';
 import { Loader2, AlertTriangle, ArrowLeft } from 'lucide-react';

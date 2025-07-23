@@ -2,7 +2,6 @@
 import {z} from 'zod';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import bcrypt from 'bcryptjs';
 
 const FormSchema=z.object({
     title:z.string().min(1, 'Title is required'),

@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { createPostClient } from "@/app/lib/clientActions";
-import { withAuthGuard, useAuth } from "@/app/components/AuthGuard";
+import { withAuthGuard } from "@/app/components/AuthGuard";
+import { useAuth } from "@/app/hooks";
 import CreatePostFormUI from "@/app/ui/CreatePostFormUI";
 
 function CreatePost() {

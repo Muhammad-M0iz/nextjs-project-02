@@ -171,9 +171,6 @@ export default function Home() {
             </Link>
           </div>
           <div className="border-t border-gray-800 pt-6">
-            <p className="text-gray-500 text-sm">
-              © 2025 PostIT. Made with ❤️ for the community.
-            </p>
           </div>
         </div>
       </footer>

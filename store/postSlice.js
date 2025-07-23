@@ -19,7 +19,6 @@ const postSlice=createSlice({
 
         delPost(state, action) {
             state.posts = state.posts.filter(post => post.id !== action.payload);
-            // Also remove comments for this post
             delete state.comments[action.payload];
         },
 
